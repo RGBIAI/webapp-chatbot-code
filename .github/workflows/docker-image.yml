@@ -20,13 +20,12 @@ jobs:
         # Container registry password
         password: ${{ secrets.ACR_PASSWORD }}
         # Container registry server url
-        login-server: ${{ secrets.ACR_LOGIN_SERVER }}
+        login-server: wppcontainerchatbot.azurecr.io
         
     - uses: actions/checkout@v3
     - name: Build the Docker image
       run:         
-        docker build . --file WebApp.Dockerfile --tag fruoccopublic.azurecr.io/sample-app-aoai-chatgpt:$(date +'%Y-%m-%d')_$GITHUB_RUN_NUMBER;
-        docker tag fruoccopublic.azurecr.io/sample-app-aoai-chatgpt:$(date +'%Y-%m-%d')_$GITHUB_RUN_NUMBER fruoccopublic.azurecr.io/sample-app-aoai-chatgpt:latest;
-        docker push fruoccopublic.azurecr.io/sample-app-aoai-chatgpt:$(date +'%Y-%m-%d')_$GITHUB_RUN_NUMBER;
-        docker push fruoccopublic.azurecr.io/sample-app-aoai-chatgpt:latest;
-      
+        docker build . --file WebApp.Dockerfile --tag wppcontainerchatbot.azurecr.io/app-aoai:$(date +'%Y-%m-%d')_$GITHUB_RUN_NUMBER;
+        docker tag wppcontainerchatbot.azurecr.io/app-aoai:$(date +'%Y-%m-%d')_$GITHUB_RUN_NUMBER wppcontainerchatbot.azurecr.io/app-aoai:latest;
+        docker push wppcontainerchatbot.azurecr.io/app-aoai:$(date +'%Y-%m-%d')_$GITHUB_RUN_NUMBER;
+        docker push wppcontainerchatbot.azurecr.io/app-aoai:latest;
